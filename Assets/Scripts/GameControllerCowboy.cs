@@ -10,6 +10,7 @@ public class GameControllerCowboy : MonoBehaviour {
 	public int life = 3;
 	public Text lifeText;
 	public Text lose;
+	public int mode = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -27,6 +28,7 @@ public class GameControllerCowboy : MonoBehaviour {
 	}
 
 	IEnumerator Spawn() {
+		//if(
 		while (life > 0) {
 			Vector3 spawnPosition = new Vector3 (Random.Range (-maxWidth, maxWidth), transform.position.y, 0.0f);
 			Quaternion spawnRotation = Quaternion.identity; // Sem rotação
@@ -48,6 +50,7 @@ public class GameControllerCowboy : MonoBehaviour {
 				lifeText.text = "Life: " + life;
 				if(life == 0){
 					lose.gameObject.SetActive(true);
+					//Application.LoadLevel("tapPlayScene");
 				}
 			}
 		}
