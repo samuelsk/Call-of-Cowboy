@@ -6,14 +6,24 @@ public class BarrelController : MonoBehaviour {
 	public Sprite[] sprites;
 	public GameObject[] chambers;
 
+	public GameObject shootProj;
+	public GameObject hero;
+
+	private Camera cam;
+	private Vector3 touch;
+	private Vector3 dir;
+	private float angle;
+
+
 	// -1 means the first round wasn't fired (i.e. a full barrel).
 	private int currentRound = -1;
 	// True if mouse is hovering over the game object collider.
 	private bool isMouseOver = false;
 
 	// Use this for initialization
-	void Start () {
-
+	void Start () 
+	{
+		cam = Camera.main;
 	}
 
 //	 Update is called once per frame
@@ -26,6 +36,7 @@ public class BarrelController : MonoBehaviour {
 				chambers [currentRound].GetComponent<SpriteRenderer> ().sprite = sprites [1];
 				// Changes to the previous chamber.
 				currentRound--;
+
 			}
 			// Check for a mouse (or touch) input and if the cursor (or the tap) wasn't over the game object at the time of input.
 		} else if (Input.GetMouseButtonDown (0) && !isMouseOver) {
@@ -37,8 +48,26 @@ public class BarrelController : MonoBehaviour {
 				chambers [currentRound].GetComponent<SpriteRenderer> ().sprite = sprites [0];
 				// Rotates the barrel to simulate a spinning revolver barrel.
 //				transform.Rotate (Vector3.forward * 60);
+
+				shootProjectile ();
 			}
 		}
+	}
+
+
+	void shootProjectile()
+	{
+		touch = cam.ScreenToWorldPoint (Input.mousePosition);
+		touch.z = 0;
+		
+		dir = touch - hero.transform.position;
+		dir = transform.InverseTransformDirection(dir);
+		
+		angle = Mathf.Atan2 (dir.y,dir.x) * Mathf.Rad2Deg;
+		
+		Quaternion quat = Quaternion.Euler(new Vector3(0,0,angle));
+		
+		Instantiate (shootProj, hero.transform.position, quat);
 	}
 
 	// Called when mouse enters game object collider.
