@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class BarrelController : MonoBehaviour {
 
 	public Sprite[] sprites;
-	public GameObject[] chambers;
+	public Image[] chambers;
 
 	public GameObject shootProj;
 	public GameObject hero;
@@ -33,10 +34,9 @@ public class BarrelController : MonoBehaviour {
 			// Check if all rounds are loaded (i.e. barrel is full).
 			if (currentRound >= 0) {
 				// Changes current round chamber sprite to loaded.
-				chambers [currentRound].GetComponent<SpriteRenderer> ().sprite = sprites [1];
+				chambers [currentRound].sprite = sprites [1];
 				// Changes to the previous chamber.
 				currentRound--;
-
 			}
 			// Check for a mouse (or touch) input and if the cursor (or the tap) wasn't over the game object at the time of input.
 		} else if (Input.GetMouseButtonDown (0) && !isMouseOver) {
@@ -45,7 +45,7 @@ public class BarrelController : MonoBehaviour {
 				// Changes to the next chamber.
 				currentRound++;
 				// Changes current round chamber sprite to empty.
-				chambers [currentRound].GetComponent<SpriteRenderer> ().sprite = sprites [0];
+				chambers [currentRound].sprite = sprites [0];
 				// Rotates the barrel to simulate a spinning revolver barrel.
 //				transform.Rotate (Vector3.forward * 60);
 
