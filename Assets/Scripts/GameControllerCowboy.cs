@@ -10,7 +10,6 @@ public class GameControllerCowboy : MonoBehaviour {
 	public float spawnSpeedMin;
 	public float spawnSpeedMax;
 	public Text lifeText;
-	//public Text lose;
 	public Text scoreText;
 	//public int mode = 1;
 	public static int score = 0;
@@ -60,7 +59,6 @@ public class GameControllerCowboy : MonoBehaviour {
 				life--;
 				lifeText.text = "Life: " + life;
 				if(life == 0){
-					//lose.gameObject.SetActive(true);
 					Application.LoadLevel("LoseScreen");
 				}
 			}
