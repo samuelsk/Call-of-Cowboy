@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class StartScreen : MonoBehaviour {
+public class MenuScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -16,4 +16,13 @@ public class StartScreen : MonoBehaviour {
 	public void StartGame(){
 		Application.LoadLevel("OldWest");
 	}
+
+	public void MainScreen() {
+		Application.LoadLevel("MainScreen");
+	}
+
+	public void HighscoreScreen() {
+		Application.LoadLevel("HighscoreScreen");
+	}
+
 }
