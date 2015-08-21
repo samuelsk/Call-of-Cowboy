@@ -21,7 +21,7 @@ public class GameControllerCowboy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		score = 0;
-		scoreText.text = "Score: " + score;
+		scoreText.text = score.ToString();
 		if (cam == null) {
 			cam = Camera.main;
 		}
@@ -48,7 +48,7 @@ public class GameControllerCowboy : MonoBehaviour {
 	void Update () {
 		if (score != lastScore) {
 			lastScore = score;
-			scoreText.text = "Score: " + score;
+			scoreText.text = score.ToString();
 		}
 	}
 

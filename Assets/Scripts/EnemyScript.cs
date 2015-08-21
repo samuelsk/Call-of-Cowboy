@@ -23,7 +23,7 @@ public class EnemyScript : MonoBehaviour {
 			Destroy(other.gameObject);
 			Destroy(this.gameObject);
 
-			GameControllerCowboy.score += 10;
+			GameControllerCowboy.score += 100;
 			print("Score: " + GameControllerCowboy.score);
 //			GameControllerCowboy.scoreText.text = "Score: " + GameControllerCowboy.score;
 		}
