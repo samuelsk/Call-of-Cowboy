@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class toPlayScript : MonoBehaviour {
+public class StartScreen : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -13,8 +13,7 @@ public class toPlayScript : MonoBehaviour {
 		
 	}
 
-	void OnMouseDown(){
-		print ("ayy");
+	public void StartGame(){
 		Application.LoadLevel("OldWest");
 	}
 }
