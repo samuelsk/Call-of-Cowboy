@@ -14,6 +14,7 @@ public class toPlayScript : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
+		print ("ayy");
 		Application.LoadLevel("OldWest");
 	}
 }
