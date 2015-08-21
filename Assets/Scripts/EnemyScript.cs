@@ -22,7 +22,9 @@ public class EnemyScript : MonoBehaviour {
 		if (other.tag == "Food") {
 			Destroy(other.gameObject);
 			Destroy(this.gameObject);
-			print("pora ligo");
+
+			GameControllerCowboy.score += 10;
+			print("Score: " + GameControllerCowboy.score);
 		}
 	}
 

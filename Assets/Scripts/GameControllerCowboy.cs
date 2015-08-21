@@ -10,10 +10,13 @@ public class GameControllerCowboy : MonoBehaviour {
 	public int life = 3;
 	public Text lifeText;
 	public Text lose;
-	public int mode = 1;
+	//public int mode = 1;
+	public static int score = 0;
+
 
 	// Use this for initialization
 	void Start () {
+		score = 0;
 		if (cam == null) {
 			cam = Camera.main;
 		}
@@ -50,7 +53,7 @@ public class GameControllerCowboy : MonoBehaviour {
 				lifeText.text = "Life: " + life;
 				if(life == 0){
 					lose.gameObject.SetActive(true);
-					Application.LoadLevel("tapToPlay");
+					Application.LoadLevel("loseScene");
 				}
 			}
 		}
