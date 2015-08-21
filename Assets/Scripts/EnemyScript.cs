@@ -25,6 +25,7 @@ public class EnemyScript : MonoBehaviour {
 
 			GameControllerCowboy.score += 10;
 			print("Score: " + GameControllerCowboy.score);
+//			GameControllerCowboy.scoreText.text = "Score: " + GameControllerCowboy.score;
 		}
 	}
 

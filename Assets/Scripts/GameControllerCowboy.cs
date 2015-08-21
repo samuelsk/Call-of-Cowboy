@@ -10,9 +10,11 @@ public class GameControllerCowboy : MonoBehaviour {
 	public float spawnSpeedMin;
 	public float spawnSpeedMax;
 	public Text lifeText;
-	public Text lose;
+	//public Text lose;
+	public Text scoreText;
 	//public int mode = 1;
 	public static int score = 0;
+	private int lastScore = 0;
 
 	private float maxWidth;
 
@@ -20,6 +22,7 @@ public class GameControllerCowboy : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		score = 0;
+		scoreText.text = "Score: " + score;
 		if (cam == null) {
 			cam = Camera.main;
 		}
@@ -44,7 +47,10 @@ public class GameControllerCowboy : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-	
+		if (score != lastScore) {
+			lastScore = score;
+			scoreText.text = "Score: " + score;
+		}
 	}
 
 	void OnTriggerEnter2D (Collider2D other){
@@ -54,7 +60,7 @@ public class GameControllerCowboy : MonoBehaviour {
 				life--;
 				lifeText.text = "Life: " + life;
 				if(life == 0){
-					lose.gameObject.SetActive(true);
+					//lose.gameObject.SetActive(true);
 					Application.LoadLevel("LoseScreen");
 				}
 			}
