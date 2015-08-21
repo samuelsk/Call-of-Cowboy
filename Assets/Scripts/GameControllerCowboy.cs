@@ -6,12 +6,15 @@ public class GameControllerCowboy : MonoBehaviour {
 
 	public Camera cam;
 	public GameObject enemy;
-	private float maxWidth;
 	public int life = 3;
+	public float spawnSpeedMin;
+	public float spawnSpeedMax;
 	public Text lifeText;
 	public Text lose;
 	//public int mode = 1;
 	public static int score = 0;
+
+	private float maxWidth;
 
 
 	// Use this for initialization
@@ -20,7 +23,6 @@ public class GameControllerCowboy : MonoBehaviour {
 		if (cam == null) {
 			cam = Camera.main;
 		}
-		lose.gameObject.SetActive(false);
 
 		Vector3 targetWidth = cam.ScreenToWorldPoint(new Vector3 (Screen.width, Screen.height, 0.0f));
 		//float enemyWidth = enemy.GetComponent<Renderer> ().bounds.extents.x;
@@ -36,7 +38,7 @@ public class GameControllerCowboy : MonoBehaviour {
 			Vector3 spawnPosition = new Vector3 (Random.Range (-maxWidth, maxWidth), transform.position.y, 0.0f);
 			Quaternion spawnRotation = Quaternion.identity; // Sem rotação
 			Instantiate (enemy, spawnPosition, spawnRotation);
-			yield return new WaitForSeconds(Random.Range (0.25f, 1.0f));
+			yield return new WaitForSeconds(Random.Range (spawnSpeedMin, spawnSpeedMax));
 		}
 	}
 
