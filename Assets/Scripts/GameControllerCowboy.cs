@@ -53,7 +53,7 @@ public class GameControllerCowboy : MonoBehaviour {
 				lifeText.text = "Life: " + life;
 				if(life == 0){
 					lose.gameObject.SetActive(true);
-					Application.LoadLevel("loseScene");
+					Application.LoadLevel("LoseScreen");
 				}
 			}
 		}
