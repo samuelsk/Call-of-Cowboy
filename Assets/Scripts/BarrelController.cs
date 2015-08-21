@@ -27,7 +27,7 @@ public class BarrelController : MonoBehaviour {
 		cam = Camera.main;
 	}
 
-//	 Update is called once per frame
+	// Update is called once per frame
 	void Update () {
 		// Check for a mouse (or touch) input and if the cursor (or the tap) was over the game object at the time of input.
 		if (Input.GetMouseButtonDown (0) && isMouseOver) {
@@ -70,13 +70,13 @@ public class BarrelController : MonoBehaviour {
 		Instantiate (shootProj, hero.transform.position, quat);
 	}
 
-	// Called when mouse enters game object collider.
-	void OnMouseEnter() {
+	// Called when Pointer Enter event trigger is called (i.e. when mouse enters game object collider).
+	public void OnMouseEnter() {
 		isMouseOver = true;
 	}
 
-	// Called when mouse exits game object collider.
-	void OnMouseExit() {
+	// Called when Pointer Exit event trigger is called (i.e. when mouse exits game object collider).
+	public void OnMouseExit() {
 		isMouseOver = false;
 	}
 
