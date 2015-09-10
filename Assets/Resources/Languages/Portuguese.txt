@@ -1,0 +1,36 @@
+/Resources/Languages/
+
+
+Play = Jogar
+
+
+Highscore = Pontuação
+
+
+Language = Idioma
+
+
+Back = Voltar
+
+
+LangSelect = Selecione um idioma
+
+
+LoseText = Os bandidos venceram!
+
+
+Score = Pontuação
+
+
+Retry = Rejogar
+
+
+Lifes = Vidas
+
+
+Main Menu = Menu
+
+
+Empty Highscore = Não há pontuações
+
+

@@ -1,0 +1,27 @@
+
+
+
+Play = Jogar
+
+
+Language = Idioma
+
+
+Back = Voltar
+
+
+LangSelect = Selecione um idioma
+
+
+LoseText = Os bandidos conseguiram passar!
+
+
+Score = Pontuação
+
+
+Retry = Rejogar
+
+
+Lifes = Vidas
+
+

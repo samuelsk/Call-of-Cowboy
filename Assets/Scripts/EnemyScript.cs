@@ -23,9 +23,12 @@ public class EnemyScript : MonoBehaviour {
 			Destroy(other.gameObject);
 			Destroy(this.gameObject);
 
-			GameControllerCowboy.score += 100;
-			print("Score: " + GameControllerCowboy.score);
-//			GameControllerCowboy.scoreText.text = "Score: " + GameControllerCowboy.score;
+			if (GameControllerCowboy.score < 999900)
+				GameControllerCowboy.score += 100;
+			else {
+				GameControllerCowboy.score = 999999;
+				Application.LoadLevel("WinScene");
+			}
 		}
 	}
 

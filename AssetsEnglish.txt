@@ -1,0 +1,27 @@
+
+
+
+Play = Play
+
+
+Language = Language
+
+
+Back = Back
+
+
+LangSelect = Select a language
+
+
+LoseText = The bandits got through!
+
+
+Score = Score
+
+
+Retry = Retry
+
+
+Lifes = Lifes
+
+

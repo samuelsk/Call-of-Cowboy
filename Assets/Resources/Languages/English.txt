@@ -1,0 +1,36 @@
+/Resources/Languages/
+
+
+Play = Play
+
+
+Highscore = Highscore
+
+
+Language = Language
+
+
+Back = Back
+
+
+LangSelect = Select a language
+
+
+LoseText = The bandits got through!
+
+
+Score = Score
+
+
+Retry = Retry
+
+
+Lifes = Lifes
+
+
+Main Menu = Main Menu
+
+
+Empty Highscore = There are no highscores
+
+

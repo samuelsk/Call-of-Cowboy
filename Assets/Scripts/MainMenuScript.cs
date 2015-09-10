@@ -1,13 +1,26 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
-using UnityEngine.Advertisements;
 
 public class MainMenuScript : MonoBehaviour {
 
+	public Button playButton;
+	public Button highscoreButton;
+	public Button languageButton;
+
 	// Use this for initialization
 	void Start () {
-	//Permite o uso de anúncios do UnityAds.
-		Advertisement.Initialize ("71200");
+		switch (PlayerPrefs.GetInt ("lang")) {
+		case 0:
+			LanguageManager.LoadLanguageFile(Language.English);
+			break;
+		case 1:
+			LanguageManager.LoadLanguageFile(Language.Portuguese);
+			break;
+		}
+		playButton.GetComponentInChildren<Text>().text = LanguageManager.GetText("Play");
+		highscoreButton.GetComponentInChildren<Text> ().text = LanguageManager.GetText ("Highscore");
+		languageButton.GetComponentInChildren<Text>().text = LanguageManager.GetText("Language");
 	}
 	
 	// Update is called once per frame
@@ -15,16 +28,8 @@ public class MainMenuScript : MonoBehaviour {
 		
 	}
 
-	public void StartGame(){
-		Application.LoadLevel("OldWest");
-	}
-
-	public void MainScreen() {
-		Application.LoadLevel("MainScreen");
-	}
-
-	public void HighscoreScreen() {
-		Application.LoadLevel("HighscoreScreen");
+	public void LoadScene (string scene) {
+		Application.LoadLevel (scene);
 	}
 
 }

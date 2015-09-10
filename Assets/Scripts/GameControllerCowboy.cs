@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
+using System.Collections;
 
 public class GameControllerCowboy : MonoBehaviour {
 
@@ -30,7 +30,7 @@ public class GameControllerCowboy : MonoBehaviour {
 
 		Vector3 targetWidth = cam.ScreenToWorldPoint(new Vector3 (Screen.width, Screen.height, 0.0f));
 		//float enemyWidth = enemy.GetComponent<Renderer> ().bounds.extents.x;
-		lifeText.text = "Life: " + life;
+		lifeText.text = LanguageManager.GetText("Lifes") + ": " + life;
 		maxWidth = targetWidth.x - enemy.GetComponent<Renderer> ().bounds.extents.x;
 		StartCoroutine (Spawn ());
 
@@ -54,11 +54,10 @@ public class GameControllerCowboy : MonoBehaviour {
 //				}
 				Debug.Log(modifier);
 			}
-			Vector3 spawnPosition = new Vector3 (Random.Range (-maxWidth, maxWidth), transform.position.y, 0.0f);
+			Vector3 spawnPosition = new Vector3 (Random.Range (-maxWidth, maxWidth), transform.position.y/2, 0.0f);
 			Quaternion spawnRotation = Quaternion.identity; // Sem rotação
 			enemy.GetComponent<EnemyScript>().speed = 4 + modifier * 0.5f;
 			Instantiate (enemy, spawnPosition, spawnRotation);
-			Debug.Log(spawnSpeedMax);
 			yield return new WaitForSeconds(Random.Range (spawnSpeedMin, spawnSpeedMax));
 		}
 	}
@@ -85,9 +84,9 @@ public class GameControllerCowboy : MonoBehaviour {
 			if (life > 0) {
 				//Destroy (other.gameObject);
 				life--;
-				lifeText.text = "Life: " + life;
+				lifeText.text = LanguageManager.GetText("Lifes") + ": " + life;
 				if(life == 0){
-					Application.LoadLevel("LoseScreen");
+					Application.LoadLevel("LoseScene");
 				}
 			}
 		}
