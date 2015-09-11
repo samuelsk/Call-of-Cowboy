@@ -6,6 +6,7 @@ public class BarrelController : MonoBehaviour {
 
 	public Sprite[] sprites;
 	public Image[] chambers;
+	public AudioClip[] sfx;
 
 	public GameObject shootProj;
 	public GameObject hero;
@@ -15,38 +16,52 @@ public class BarrelController : MonoBehaviour {
 	private Vector3 touch;
 	private Vector3 dir;
 	private float angle;
+	private AudioSource audioSource;
 
 
 	// -1 means the first round wasn't fired (i.e. a full barrel).
 	private int currentRound = -1;
-	// True if mouse is hovering over the game object collider.
-	private bool isMouseOver = false;
+	// True if mouse is hovering over the barrel collider.
+	private bool isMouseOverBarrel = false;
+	// True if mouse is hovering over the pause button.
+	private bool isMouseOverPauseButton = false;
 
 	// Use this for initialization
 	void Start () 
 	{
 		cam = Camera.main;
+		audioSource = GetComponent<AudioSource> ();
 	}
 
 	// Update is called once per frame
 	void Update () {
-		// Check for a mouse (or touch) input and if the cursor (or the tap) was over the game object at the time of input.
-		if (Input.GetMouseButtonDown (0) && isMouseOver) {
-			// Check if all rounds are loaded (i.e. barrel is full).
-			if (currentRound >= 0) {
-				// Changes current round chamber sprite to loaded.
-				chambers [currentRound].sprite = sprites [1];
-				// Changes to the previous chamber.
-				currentRound--;
-			}
-			// Check for a mouse (or touch) input and if the cursor (or the tap) wasn't over the game object at the time of input.
-		} else if (Input.GetMouseButtonDown (0) && !isMouseOver) {
-			// Check if the last round was fired (i.e. the barrel is empty).
-			if (currentRound < chambers.Length - 1) {
+		if (!GameControllerCowboy.isGamePaused) {
+			// Checks for a mouse (or touch) input and if the cursor (or the tap) was over the game object at the time of input.
+			if (Input.GetMouseButtonDown (0) && isMouseOverBarrel) {
+				// Checks if all rounds are loaded (i.e. barrel is full).
+				if (currentRound >= 0) {
+					//Switches audio clip to the reloading sfx.
+					audioSource.clip = sfx [2];
+					audioSource.Play ();
 
-				shootProjectile ();
-
-
+					// Changes current round chamber sprite to loaded.
+					chambers [currentRound].sprite = sprites [1];
+					// Changes to the previous chamber.
+					currentRound--;
+				}
+				// Checks for a mouse (or touch) input and if the cursor (or the tap) wasn't over the game object at the time of input.
+			} else if (Input.GetMouseButtonDown (0) && !isMouseOverBarrel && !isMouseOverPauseButton) {
+				// Checks if the last round was fired (i.e. the barrel is empty).
+				if (currentRound < chambers.Length - 1) {
+					//Switches audio clip to the shooting sfx.
+					audioSource.clip = sfx [0];
+					audioSource.Play ();
+					shootProjectile ();
+				} else {
+					//Switches audio clip to the dry fire sfx.
+					audioSource.clip = sfx [1];
+					audioSource.Play ();
+				}
 			}
 		}
 	}
@@ -75,13 +90,21 @@ public class BarrelController : MonoBehaviour {
 	}
 
 	// Called when Pointer Enter event trigger is called (i.e. when mouse enters game object collider).
-	public void OnMouseEnter() {
-		isMouseOver = true;
+	public void OnMouseEnterBarrel() {
+		isMouseOverBarrel = true;
 	}
 
 	// Called when Pointer Exit event trigger is called (i.e. when mouse exits game object collider).
-	public void OnMouseExit() {
-		isMouseOver = false;
+	public void OnMouseExitBarrel() {
+		isMouseOverBarrel = false;
+	}
+
+	public void OnMouseEnterPauseButton() {
+		isMouseOverPauseButton = true;
+	}
+
+	public void OnMouseExitPauseButton() {
+		isMouseOverPauseButton = false;
 	}
 
 }

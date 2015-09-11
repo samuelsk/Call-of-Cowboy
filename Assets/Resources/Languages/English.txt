@@ -34,3 +34,42 @@ Main Menu = Main Menu
 Empty Highscore = There are no highscores
 
 
+Watch Video = Watch Video
+
+
+Go Back = Go Back
+
+
+Continue = Continue
+
+
+No Retries = No Retries
+
+
+for more retries = for more retries
+
+
+or = or
+
+
+and wait a day = and wait a day
+
+
+Are you sure? = Are you sure?
+
+
+You'll lose one retry = You'll lose one retry
+
+
+Yes = Yes
+
+
+No = No
+
+
+Credits = Credits
+
+
+Music = Music
+
+

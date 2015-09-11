@@ -34,3 +34,41 @@ Main Menu = Menu
 Empty Highscore = Não há pontuações
 
 
+Watch Video = Ver Vídeo
+
+
+Go Back = Voltar
+
+
+Continue = Continuar
+
+
+No Retries = Sem Tentativas
+
+
+for more retries = para mais tentativas
+
+
+or = ou
+
+
+and wait a day = e esperar um dia
+
+
+Are you sure? = Tem certeza?
+
+
+You'll lose one retry = Você perderá uma tentativa
+
+
+Yes = Sim
+
+
+No = Não
+
+
+Credits = Créditos
+
+
+Music = Música
+
