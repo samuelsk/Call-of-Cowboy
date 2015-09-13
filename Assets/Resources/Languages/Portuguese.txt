@@ -72,3 +72,10 @@ Credits = Créditos
 
 Music = Música
 
+
+No Internet = Sem Internet
+
+
+You need an internet connection to watch the video = Você precisa de conexão com a internet para assistir o vídeo
+
+

@@ -13,7 +13,10 @@ public class LoseScore : MonoBehaviour {
 	public CanvasGroup videoPopupGroup;
 	public Text[] videoText;
 	public Button videoButton;
-	public Button backButton;
+	public Button backButton1;
+	public CanvasGroup noInternetGroup;
+	public Text[] noInternetText;
+	public Button backButton2;
 
 	// Use this for initialization
 	void Start () {
@@ -30,7 +33,10 @@ public class LoseScore : MonoBehaviour {
 			+ "\n" + LanguageManager.GetText ("or");
 		videoText[2].text = LanguageManager.GetText ("and wait a day");
 		videoButton.GetComponentInChildren<Text>().text = LanguageManager.GetText ("Watch Video");
-		backButton.GetComponentInChildren<Text>().text = LanguageManager.GetText ("Go Back");
+		backButton1.GetComponentInChildren<Text>().text = LanguageManager.GetText ("Go Back");
+		noInternetText [0].text = LanguageManager.GetText ("No Internet");
+		noInternetText [1].text = LanguageManager.GetText ("You need an internet connection to watch the video");
+		backButton2.GetComponentInChildren<Text> ().text = LanguageManager.GetText ("Back");
 
 		BGMManager.instance.stopBGM ();
 	}
@@ -56,10 +62,18 @@ public class LoseScore : MonoBehaviour {
 			if (Advertisement.IsReady("rewardedVideo")) {
 				var options = new ShowOptions { resultCallback = HandleShowResult };
 				Advertisement.Show ("rewardedVideo", options);
+				toggleGroup (menuGroup, true);
+				toggleGroup (videoPopupGroup, false);
+			} else {
+				toggleGroup (videoPopupGroup, false);
+				toggleGroup (noInternetGroup, true);
 			}
 		}
+	}
+	
+	public void ConfirmNoInternet () {
+		toggleGroup (noInternetGroup, false);
 		toggleGroup (menuGroup, true);
-		toggleGroup (videoPopupGroup, false);
 	}
 	
 	private void HandleShowResult (ShowResult result) {

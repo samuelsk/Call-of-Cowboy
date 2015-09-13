@@ -73,3 +73,9 @@ Credits = Credits
 Music = Music
 
 
+No Internet = No Internet
+
+
+You need an internet connection to watch the video = You need an internet connection to watch the video
+
+

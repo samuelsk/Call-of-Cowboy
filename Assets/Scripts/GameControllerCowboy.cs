@@ -15,10 +15,10 @@ public class GameControllerCowboy : MonoBehaviour {
 
 	public Text lifeText;
 	public Text scoreText;
-	public GameObject blurImage;
+	public CanvasGroup pauseGroup;
 	public Button continueButton;
 	public Button mainMenuButton;
-	public GameObject confirmImage;
+	public CanvasGroup confirmGroup;
 	public Text[] confirmText;
 	public Button yesButton;
 	public Button noButton;
@@ -40,8 +40,6 @@ public class GameControllerCowboy : MonoBehaviour {
 		confirmText [1].text = LanguageManager.GetText ("You'll lose one retry");
 		yesButton.GetComponentInChildren<Text> ().text = LanguageManager.GetText ("Yes");
 		noButton.GetComponentInChildren<Text> ().text = LanguageManager.GetText ("No");
-		confirmImage.SetActive (false);
-		blurImage.SetActive (false);
 
 		Vector3 targetWidth = cam.ScreenToWorldPoint(new Vector3 (Screen.width, Screen.height, 0.0f));
 		//float enemyWidth = enemy.GetComponent<Renderer> ().bounds.extents.x;
@@ -111,18 +109,20 @@ public class GameControllerCowboy : MonoBehaviour {
 	public void togglePause () {
 		if (isGamePaused) {
 			isGamePaused = false;
-			blurImage.SetActive (false);
+			toggleGroup (pauseGroup, false);
 			Time.timeScale = 1.0f;
+			BGMManager.instance.playBGM ("OldWest");
 		} else {
 			isGamePaused = true;
-			blurImage.SetActive (true);
+			toggleGroup (pauseGroup, true);
 			Time.timeScale = 0.0f;
+			BGMManager.instance.stopBGM ();
 		}
 	}
 
 	public void LoadScene (string scene) {
 		if (scene.Equals ("MainScene"))
-			confirmImage.SetActive (true);
+			toggleGroup (confirmGroup, true);
 		else Application.LoadLevel (scene);
 	}
 
@@ -132,7 +132,19 @@ public class GameControllerCowboy : MonoBehaviour {
 			PlayerPrefs.SetInt ("retries", PlayerPrefs.GetInt ("retries") - 1);
 			Application.LoadLevel ("MainScene");
 		} else {
-			confirmImage.SetActive (false);
+			toggleGroup (confirmGroup, false);
+		}
+	}
+
+	private void toggleGroup (CanvasGroup group, bool isHidden) {
+		if (isHidden) {
+			group.alpha = 1.0f;
+			group.interactable = true;
+			group.blocksRaycasts = true;
+		} else {
+			group.alpha = 0.0f;
+			group.interactable = false;
+			group.blocksRaycasts = false;
 		}
 	}
 
